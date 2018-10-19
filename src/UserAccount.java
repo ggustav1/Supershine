@@ -1,14 +1,10 @@
 public class UserAccount {
-    private int ID;
-    private int PIN;
+    private int ID = 1;
+    private int PIN = 1234;
     private float AccountBalance;
 
     public boolean ValidateUser(int id, int pin){
-        if(id == ID && pin == PIN){
-            return true;
-        } else  {
-            return false;
-        }
+        return id == ID && pin == PIN;
     }
 
     public float GetAccountBalance(){
