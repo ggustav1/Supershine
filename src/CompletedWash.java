@@ -1,9 +1,9 @@
 import java.time.*;
 
 public class CompletedWash {
-    private WashType type;
-    private LocalDateTime dateAndTime;
-    private boolean discountUsed;
+    public WashType type;
+    public LocalDateTime dateAndTime;
+    public boolean discountUsed;
 
     CompletedWash(WashType type, LocalDateTime date, boolean useOfDiscount){
         this.type = type;
