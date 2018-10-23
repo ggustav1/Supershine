@@ -1,13 +1,15 @@
+import java.time.*;
+
 public class WashType {
     public String name;
     private float price;
-    public float time;
+    public Duration time;
     public boolean earlybird;
 
-    public WashType(String name, float price, float time, boolean earlybird) {
+    public WashType(String name, float price, Duration time, boolean earlybird) {
         this.name = name;
         this.price = price;
-        this.time = price;
+        this.time = time;
         this.earlybird = earlybird;
     }
 
