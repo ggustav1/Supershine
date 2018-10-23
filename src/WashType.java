@@ -1,2 +1,4 @@
-public class WashType {
+public class WashType
+{
+
 }
