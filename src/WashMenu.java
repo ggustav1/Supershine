@@ -22,6 +22,6 @@ public class WashMenu {
     statistics.listOfCompletedWashes.add(new CompletedWash(economy, LocalDateTime.now(), false));
     //vi bruger Arraylist'en fra klassen Statistics som hedder "listOfCompletedWashses" og tilføjer "dummy data"
 
-        System.out.println(statistics.listOfCompletedWashes.size());
+        System.out.println(statistics.getTotalWashes());
     }
 }

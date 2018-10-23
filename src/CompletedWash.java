@@ -4,10 +4,12 @@ public class CompletedWash {
     public WashType type;
     public LocalDateTime dateAndTime;
     public boolean discountUsed;
+    public float money;
 
     CompletedWash(WashType type, LocalDateTime date, boolean useOfDiscount){
         this.type = type;
         this.dateAndTime = date;
         this.discountUsed = useOfDiscount;
+        this.money = type.getPrice();
     }
 }

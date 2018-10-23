@@ -14,7 +14,7 @@ public class WashType {
     }
 
     public float getPrice() {
-        // TODO Noget med early bird
+        //if(earlybird && )
         return price;
     }
 
