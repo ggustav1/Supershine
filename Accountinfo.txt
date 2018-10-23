@@ -1,1 +1,3 @@
-id: 1 pin: 1234
+id: 1 pin: 1234 balance: 600
+id: 2 pin: 1337 balance: 500
+id: 3 pin: 4242 balance: 950
