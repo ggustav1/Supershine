@@ -1,13 +1,9 @@
-<<<<<<< Updated upstream
-public class Admin
-{
-=======
 public class Admin {
 
-    private string ID;
+    private String ID;
     private int PIN;
 
-    public boolean validateUser (string id, int pin)
+    public boolean validateUser (String id, int pin)
     {
         if(id == ID && pin == PIN)
         {
@@ -20,6 +16,6 @@ public class Admin {
 
     public void displayStatistics()
 
->>>>>>> Stashed changes
+
 
 }
