@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Statistics {
-    private ArrayList<CompletedWash> listOfCompletedWashes = new ArrayList<>();
+    public ArrayList<CompletedWash> listOfCompletedWashes = new ArrayList<>();
 
     public float getMoney() {
         return 1;
