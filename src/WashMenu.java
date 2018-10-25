@@ -1,19 +1,17 @@
-import java.time.*;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class WashMenu {
-    private boolean inUse;
-    private WashType listOfWashType[];
-    private static int activeUser;
+    public static int activeUser;
     public static Statistics statistics = new Statistics(); //instans af klassen Statistics er oprettet
     public static ArrayList<UserAccount> Accounts = new ArrayList<>();
     static WashType economy = new WashType("Economy ",50,Duration.ofMinutes(10),true); //Vi opretter de tre forskellige vasketyper
     static WashType standard = new WashType("Standard ",80,Duration.ofMinutes(15),true);
     static WashType de_Luxe = new WashType("De Luxe ",120,Duration.ofMinutes(20),false);
 
-    private static void displayMenu(){
+    public static void displayMenu() {
         System.out.println("Welcome to SuperShine Carwash - the best in the town");
         System.out.println("Choose one of the following options: ");
         System.out.println("1. Wash car");
@@ -108,21 +106,7 @@ public class WashMenu {
 
     public static void main(String[] args) {
         addDummyData();
-        Scanner input = new Scanner(System.in);
-        for (int i = 0; i<3; i++)
-        {
-            System.out.println("ID please: ");
-            int inID = input.nextInt();
-            System.out.println("PIN please: ");
-            int inPIN = input.nextInt();
-            if(inID == 00 && inPIN == 000){
-                Admin.displayStatistics();
-            } else {
-                activeUser = inID;
-                if (Accounts.get(inID).ValidateUser(inPIN)){
-                displayMenu();}
-            }
-        }
+        UserAccount.ValidateUser();
         endService();
 
 
