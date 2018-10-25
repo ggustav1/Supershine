@@ -1,6 +1,7 @@
 import java.time.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class WashMenu {
     private boolean inUse;
@@ -27,6 +28,7 @@ public class WashMenu {
             case 1: displayWashTypes();
                 break;
             case 2: System.out.println(Accounts.get(activeUser).GetAccountBalance());
+            displayMenu();
                 break;
             case 3: refill();
                 break;
@@ -46,10 +48,42 @@ public class WashMenu {
         System.out.println("1. " + economy.name + "price: " + economy.getPrice() + " estimated time: " + economy.time);
         System.out.println("2. " + standard.name + "price: " + standard.getPrice() + " estimated time: " + standard.time);
         System.out.println("3. " + de_Luxe.name + "price: " + de_Luxe.getPrice() + " estimated time: " + de_Luxe.time);
+        Scanner input = new Scanner(System.in);
+        int a = input.nextInt();
+        switch (a){
+            case 1: initiateWash(economy);
+                break;
+            case 2: initiateWash(standard);
+                break;
+            case 3: initiateWash(de_Luxe);
+                break;
+        }
+    }
+    private static void refill(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter from 200DKK to 1000DKK the amount you would like to refill");
+        int a = input.nextInt();
+        if (a>=200 && a<=1000){
+            Accounts.get(activeUser).ChangeAccountBalance(a);
+            displayMenu();
+
+        }else{System.out.println("Invalid amount, please try again");
+        refill();
+        }
 
     }
-    private static void refill(){}
-    private static void initiateWash(WashType washType){}
+    private static void initiateWash(WashType washType) {
+        if(washType.getPrice() < Accounts.get(activeUser).GetAccountBalance()){
+            Accounts.get(activeUser).ChangeAccountBalance(-washType.getPrice());
+            endService();
+            try {
+                TimeUnit.MINUTES.sleep(washType.time.toMinutes());
+            } catch (InterruptedException e) {}
+        } else {
+            System.out.println("Insufficient amounts, please refill your WashCard");
+            displayMenu();
+        }
+    }
     private static void endService(){
         Scanner input = new Scanner(System.in);
         System.out.println("Would you like a receipt? \nEnter yes or no");
