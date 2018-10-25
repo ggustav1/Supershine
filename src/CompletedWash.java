@@ -6,10 +6,14 @@ public class CompletedWash {
     public boolean discountUsed;
     public float money;
 
-    CompletedWash(WashType type, LocalDateTime date, boolean useOfDiscount){
+    CompletedWash(WashType type){
         this.type = type;
-        this.dateAndTime = date;
-        this.discountUsed = useOfDiscount;
+        this.dateAndTime = LocalDateTime.now();
         this.money = type.getPrice();
+        if(dateAndTime.getHour() < 14 && type.earlybird && dateAndTime.getDayOfWeek() != DayOfWeek.SATURDAY && dateAndTime.getDayOfWeek() != DayOfWeek.SUNDAY){
+            discountUsed = true;
+        } else {
+            discountUsed = false;
+        }
     }
 }

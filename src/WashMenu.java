@@ -10,17 +10,17 @@ public class WashMenu {
 
     public static void main(String[] args) {
 
-    WashType economy = new WashType("Economy",50,Duration.ofMinutes(10),true); //Vi opretter de tre forskellige vasketyper
-    WashType standard = new WashType("Standard",80,Duration.ofMinutes(15),true);
-    WashType de_Luxe = new WashType("De Luxe",120,Duration.ofMinutes(20),false);
+        WashType economy = new WashType("Economy",50,Duration.ofMinutes(10),true); //Vi opretter de tre forskellige vasketyper
+        WashType standard = new WashType("Standard",80,Duration.ofMinutes(15),true);
+        WashType de_Luxe = new WashType("De Luxe",120,Duration.ofMinutes(20),false);
 
-    Statistics statistics = new Statistics(); //instans af klassen Statistics er oprettet
-    statistics.listOfCompletedWashes.add(new CompletedWash(economy, LocalDateTime.now(), true));
-    statistics.listOfCompletedWashes.add(new CompletedWash(economy, LocalDateTime.now(), true));
-    statistics.listOfCompletedWashes.add(new CompletedWash(de_Luxe, LocalDateTime.now(), false));
-    statistics.listOfCompletedWashes.add(new CompletedWash(standard, LocalDateTime.now(), true));
-    statistics.listOfCompletedWashes.add(new CompletedWash(economy, LocalDateTime.now(), false));
-    //vi bruger Arraylist'en fra klassen Statistics som hedder "listOfCompletedWashses" og tilføjer "dummy data"
+        Statistics statistics = new Statistics(); //instans af klassen Statistics er oprettet
+        statistics.listOfCompletedWashes.add(new CompletedWash(economy));
+        statistics.listOfCompletedWashes.add(new CompletedWash(economy));
+        statistics.listOfCompletedWashes.add(new CompletedWash(de_Luxe));
+        statistics.listOfCompletedWashes.add(new CompletedWash(standard));
+        statistics.listOfCompletedWashes.add(new CompletedWash(economy));
+        //vi bruger Arraylist'en fra klassen Statistics som hedder "listOfCompletedWashses" og tilføjer "dummy data"
 
         System.out.println(statistics.getTotalWashes());
     }
