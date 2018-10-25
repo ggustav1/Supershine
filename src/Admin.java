@@ -1,23 +1,14 @@
 public class Admin {
 
-    private String ID;
-    private int PIN;
-
-    public boolean validateUser (String id, int pin)
+    public static void displayStatistics()
     {
-        if(id == ID && pin == PIN)
-        {
-            return true;
-        }
-        else {
-            return false;
-         }
+        System.out.println("Total money earned: " + WashMenu.statistics.getMoney() + " DKK");
+        System.out.println("Total amount of Discount: " + WashMenu.statistics.getUserDiscount());
+        System.out.println("Total amount of washes: " + WashMenu.statistics.getTotalWashes());
+        System.out.println("Amount of Economy washes: " + WashMenu.statistics.getAmountOfWashes(WashMenu.economy));
+        System.out.println("Amount of Standard washes: " + WashMenu.statistics.getAmountOfWashes(WashMenu.standard));
+        System.out.println("Amount of De Luxe washes: " + WashMenu.statistics.getAmountOfWashes(WashMenu.de_Luxe));
     }
-    public void displayStatistics()
-    {
-
-    }
-
 
 
 }

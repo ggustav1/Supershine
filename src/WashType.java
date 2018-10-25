@@ -15,18 +15,15 @@ public class WashType {
 
     public float getPrice()
     {
-        LocalDateTime dateAndTime = LocalDateTime.now(); // now bruger vi fordi den er static. derfor kan vi ikke bruge new
+        LocalDateTime dateAndTime = LocalDateTime.now(); // now bruger vi fordi den er static. derfor behøver vi ikke bruge new
 
         if(dateAndTime.getHour() < 14 && earlybird && dateAndTime.getDayOfWeek() != DayOfWeek.SATURDAY && dateAndTime.getDayOfWeek() != DayOfWeek.SUNDAY){
-
             return price * 0.8f;
         }
-
         else
             {
-
             return price;
-           }
+            }
 
     }
 
