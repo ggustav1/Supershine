@@ -13,9 +13,9 @@ public class UserAccount {
 
         Scanner input = new Scanner(System.in);
         for (int i = 0; i < 3; i++) {
-            System.out.println("ID please: ");
+            System.out.println("Enter your user ID please : ");
             int inID = input.nextInt();
-            System.out.println("PIN please: ");
+            System.out.println("Enter your PIN please: ");
             int inPIN = input.nextInt();
             if (inID == 00 && inPIN == 000) {
                 Admin.displayStatistics();

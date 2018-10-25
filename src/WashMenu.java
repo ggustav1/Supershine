@@ -87,7 +87,13 @@ public class WashMenu {
         System.out.println("Would you like a receipt? \nEnter yes or no");
 
         String a = input.nextLine();
-        if (a.equals("yes")){System.out.println("Thank you for your visit \nYour current account balance is: " + Accounts.get(activeUser).GetAccountBalance());} //print
+        if (a.equals("yes")){System.out.println("Thank you for your visit \nYour current account balance is: " + Accounts.get(activeUser).GetAccountBalance());
+        UserAccount.ValidateUser();
+
+        }
+        else{
+            UserAccount.ValidateUser();
+        }
 
     }
     private static void addDummyData(){
@@ -106,7 +112,7 @@ public class WashMenu {
     }
 
     public static void main(String[] args) {
-        addDummyData();
+        addDummyData(); //Vi kalder forskellige metoder her
         UserAccount.ValidateUser();
         endService();
 
