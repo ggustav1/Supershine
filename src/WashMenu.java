@@ -1,4 +1,5 @@
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -38,8 +39,6 @@ public class WashMenu {
                 break;
         }
 
-
-
     }
     private static void displayWashTypes(){
         System.out.println("Choose one of the following options:");
@@ -60,7 +59,7 @@ public class WashMenu {
     private static void refill(){
         Scanner input = new Scanner(System.in);
         System.out.println("Enter from 200DKK to 1000DKK the amount you would like to refill");
-        int a = input.nextInt();
+        float a = input.nextFloat();
         if (a>=200 && a<=1000){
             Accounts.get(activeUser).ChangeAccountBalance(a);
             displayMenu();
@@ -73,10 +72,11 @@ public class WashMenu {
     private static void initiateWash(WashType washType) {
         if(washType.getPrice() < Accounts.get(activeUser).GetAccountBalance()){
             Accounts.get(activeUser).ChangeAccountBalance(-washType.getPrice());
+            washType.addToCompletedWashList();
             endService();
             try {
                 TimeUnit.MINUTES.sleep(washType.time.toMinutes());
-            } catch (InterruptedException e) {}
+            } catch (InterruptedException e) {} //Bliver ikke brugt til noget, men den skal være
         } else {
             System.out.println("Insufficient amounts, please refill your WashCard");
             displayMenu();
@@ -87,7 +87,8 @@ public class WashMenu {
         System.out.println("Would you like a receipt? \nEnter yes or no");
 
         String a = input.nextLine();
-        if (a.equals("yes")){} //print
+        if (a.equals("yes")){System.out.println("Thank you for your visit \nYour current account balance is: " + Accounts.get(activeUser).GetAccountBalance());} //print
+
     }
     private static void addDummyData(){
         statistics.listOfCompletedWashes.add(new CompletedWash(economy));
