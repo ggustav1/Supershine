@@ -7,6 +7,8 @@ public class WashMenu {
     public void displayWashTypes(){}
     public void initiateWash(WashType washType){}
     public void endService(){}
+    public static Statistics statistics = new Statistics(); //instans af klassen Statistics er oprettet
+
 
     public static void main(String[] args) {
 
@@ -14,7 +16,6 @@ public class WashMenu {
         WashType standard = new WashType("Standard",80,Duration.ofMinutes(15),true);
         WashType de_Luxe = new WashType("De Luxe",120,Duration.ofMinutes(20),false);
 
-        Statistics statistics = new Statistics(); //instans af klassen Statistics er oprettet
         statistics.listOfCompletedWashes.add(new CompletedWash(economy));
         statistics.listOfCompletedWashes.add(new CompletedWash(economy));
         statistics.listOfCompletedWashes.add(new CompletedWash(de_Luxe));
