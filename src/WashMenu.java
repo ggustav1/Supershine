@@ -45,9 +45,9 @@ public class WashMenu {
     }
     private static void displayWashTypes(){
         System.out.println("Choose one of the following options:");
-        System.out.println("1. " + economy.name + "price: " + economy.getPrice() + " estimated time: " + economy.time);
-        System.out.println("2. " + standard.name + "price: " + standard.getPrice() + " estimated time: " + standard.time);
-        System.out.println("3. " + de_Luxe.name + "price: " + de_Luxe.getPrice() + " estimated time: " + de_Luxe.time);
+        System.out.println("1. " + economy.name + "price: " + economy.getPrice() + " estimated time: " + economy.time.toMinutes() + " Minutes");
+        System.out.println("2. " + standard.name + "price: " + standard.getPrice() + " estimated time: " + standard.time.toMinutes() + " Minutes");
+        System.out.println("3. " + de_Luxe.name + "price: " + de_Luxe.getPrice() + " estimated time: " + de_Luxe.time.toMinutes() + " Minutes");
         Scanner input = new Scanner(System.in);
         int a = input.nextInt();
         switch (a){
