@@ -88,9 +88,9 @@ public class WashMenu {
         String a = input.nextLine();
         if (a.equals("yes")){
             System.out.println("*********************************************");
-            System.out.println("* Super Shine Receipt                       *");
-            System.out.println("* Thank you for your visit, user " + activeUser + "          *");
-            System.out.println("* " + ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "           *");
+            System.out.println("*            Super Shine Receipt            *");
+            System.out.println("*     Thank you for your visit, user " + activeUser + "      *");
+            System.out.println("*      " + ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "      *");
             System.out.println("* Your current account balance is: " + Accounts.get(activeUser).GetAccountBalance() + " DKK *");
             System.out.println("*********************************************");
         } //print

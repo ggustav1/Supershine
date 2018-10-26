@@ -12,7 +12,7 @@ public class Statistics {
 
     }
 
-    public int getUserDiscount() {
+    public int getUseOfDiscount() {
         int i = 0;
         for (int j = 0; j < listOfCompletedWashes.size(); j++){ // Kører listofcompletetedwashes igennem linje for linje.
             if (listOfCompletedWashes.get(j).discountUsed)  //hvis discountused er true, tæller den med.
