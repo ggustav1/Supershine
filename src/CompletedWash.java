@@ -6,7 +6,7 @@ public class CompletedWash {
     public boolean discountUsed;
     public float money;
 
-    CompletedWash(WashType type){
+    public CompletedWash(WashType type){
         this.type = type;
         this.dateAndTime = LocalDateTime.now();
         this.money = type.getPrice();

@@ -1,5 +1,6 @@
 import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -8,9 +9,9 @@ public class WashMenu {
     public static int activeUser;
     public static Statistics statistics = new Statistics(); //instans af klassen Statistics er oprettet
     public static ArrayList<UserAccount> Accounts = new ArrayList<>();
-    static WashType economy = new WashType("Economy ",50,Duration.ofMinutes(10),true); //Vi opretter de tre forskellige vasketyper
-    static WashType standard = new WashType("Standard ",80,Duration.ofMinutes(15),true);
-    static WashType de_Luxe = new WashType("De Luxe ",120,Duration.ofMinutes(20),false);
+    static WashType economy = new WashType("Economy ",50,Duration.ofMinutes(3),true); //Vi opretter de tre forskellige vasketyper
+    static WashType standard = new WashType("Standard ",80,Duration.ofMinutes(5),true);
+    static WashType de_Luxe = new WashType("De Luxe ",120,Duration.ofMinutes(8),false);
 
     public static void displayMenu() {
         System.out.println("Welcome to SuperShine Carwash - the best in the town");
@@ -81,15 +82,16 @@ public class WashMenu {
             displayMenu();
         }
     }
-    private static void endService(){
+    public static void endService(){
         Scanner input = new Scanner(System.in);
         System.out.println("Would you like a receipt? \nEnter yes or no");
         String a = input.nextLine();
         if (a.equals("yes")){
-            System.out.println("Thank you for your visit, user " + activeUser);
-            System.out.println(LocalDateTime.now().toLocalDate() + " " + LocalDateTime.now().toLocalTime());
-            System.out.println("Your current account balance is: " + Accounts.get(activeUser).GetAccountBalance() + " DKK");
-            System.out.println("\n\n");
+            System.out.println("* Super Shine Receipt                       *");
+            System.out.println("* Thank you for your visit, user " + activeUser + "          *");
+            System.out.println("* " + ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "           *");
+            System.out.println("* Your current account balance is: " + Accounts.get(activeUser).GetAccountBalance() + " DKK *");
+            System.out.println("*********************************************");
         } //print
         activeUser = 0;
         UserAccount.ValidateUser();
@@ -111,7 +113,7 @@ public class WashMenu {
     public static void main(String[] args) {
         addDummyData();
         UserAccount.ValidateUser();
-        endService();
+//        endService();
 
     }
 }

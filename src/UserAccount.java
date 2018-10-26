@@ -10,6 +10,7 @@ public class UserAccount {
     }
 
     public static void ValidateUser() {
+        System.out.println("\n\n");
         System.out.println("*********************************");
         System.out.println("* Welcome to SuperShine CarWash *");
         System.out.println("*********************************");
@@ -32,7 +33,7 @@ public class UserAccount {
                 }
             }
         }
-
+        WashMenu.endService();
 
     }
 
