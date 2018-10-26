@@ -10,6 +10,10 @@ public class UserAccount {
     }
 
     public static void ValidateUser() {
+        System.out.println("\n\n");
+        System.out.println("*********************************");
+        System.out.println("* Welcome to SuperShine CarWash *");
+        System.out.println("*********************************");
 
         Scanner input = new Scanner(System.in);
         for (int i = 0; i < 3; i++) {
@@ -20,26 +24,29 @@ public class UserAccount {
             if (inID == 00 && inPIN == 000) {
                 Admin.displayStatistics();
             } else {
-                WashMenu.activeUser = inID;
                 if (WashMenu.Accounts.get(inID).CheckPIN(inPIN)) {
+                    WashMenu.activeUser = inID;
                     WashMenu.displayMenu();
+                    break;
+                } else {
+                    System.out.println("* Invalid Login, try again *");
                 }
             }
         }
+        WashMenu.endService();
+
     }
 
-    public float GetAccountBalance()
-    {
+    public float GetAccountBalance() {
         return AccountBalance;
-    }
+    } //Intet behov for denne funktion, oprettet da vi planlagde at bruge en txt fil til at holde UserAccount data
 
     public void ChangeAccountBalance(float BalanceChange)
     {
         AccountBalance += BalanceChange;
     }
 
-    public UserAccount(int id, int pin, float accountBalance)
-    {
+    public UserAccount(int id, int pin, float accountBalance) {
         this.ID=id;
         this.PIN=pin;
         this.AccountBalance=accountBalance;

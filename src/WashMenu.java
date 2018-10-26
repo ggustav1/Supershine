@@ -1,5 +1,6 @@
 import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -8,9 +9,9 @@ public class WashMenu {
     public static int activeUser;
     public static Statistics statistics = new Statistics(); //instans af klassen Statistics er oprettet
     public static ArrayList<UserAccount> Accounts = new ArrayList<>();
-    static WashType economy = new WashType("Economy ",50,Duration.ofMinutes(10),true); //Vi opretter de tre forskellige vasketyper
-    static WashType standard = new WashType("Standard ",80,Duration.ofMinutes(15),true);
-    static WashType de_Luxe = new WashType("De Luxe ",120,Duration.ofMinutes(20),false);
+    static WashType economy = new WashType("Economy ",50,Duration.ofMinutes(3),true); //Vi opretter de tre forskellige vasketyper
+    static WashType standard = new WashType("Standard ",80,Duration.ofMinutes(5),true);
+    static WashType de_Luxe = new WashType("De Luxe ",120,Duration.ofMinutes(8),false);
 
     public static void displayMenu() {
         System.out.println("Welcome to SuperShine Carwash - the best in the town");
@@ -22,8 +23,7 @@ public class WashMenu {
 
         Scanner input = new Scanner(System.in);
         int in = input.nextInt();
-        switch(in)
-        {
+        switch(in) {
             case 1: displayWashTypes();
                 break;
             case 2: System.out.println(Accounts.get(activeUser).GetAccountBalance());
@@ -38,7 +38,6 @@ public class WashMenu {
                 displayMenu();
                 break;
         }
-
     }
     private static void displayWashTypes(){
         System.out.println("Choose one of the following options:");
@@ -73,28 +72,29 @@ public class WashMenu {
         if(washType.getPrice() < Accounts.get(activeUser).GetAccountBalance()){
             Accounts.get(activeUser).ChangeAccountBalance(-washType.getPrice());
             washType.addToCompletedWashList();
+            System.out.println("Your wash is now starting, it will be done in " + washType.time.toMinutes() + " Minutes.");
             endService();
             try {
                 TimeUnit.MINUTES.sleep(washType.time.toMinutes());
-            } catch (InterruptedException e) {} //Bliver ikke brugt til noget, men den skal være
+            } catch (InterruptedException e) {} //Bliver ikke brugt til noget, men den skal være der i tilfælde af en exception
         } else {
             System.out.println("Insufficient amounts, please refill your WashCard");
             displayMenu();
         }
     }
-    private static void endService(){
+    public static void endService(){
         Scanner input = new Scanner(System.in);
         System.out.println("Would you like a receipt? \nEnter yes or no");
-
         String a = input.nextLine();
-        if (a.equals("yes")){System.out.println("Thank you for your visit \nYour current account balance is: " + Accounts.get(activeUser).GetAccountBalance());
+        if (a.equals("yes")){
+            System.out.println("* Super Shine Receipt                       *");
+            System.out.println("* Thank you for your visit, user " + activeUser + "          *");
+            System.out.println("* " + ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "           *");
+            System.out.println("* Your current account balance is: " + Accounts.get(activeUser).GetAccountBalance() + " DKK *");
+            System.out.println("*********************************************");
+        } //print
+        activeUser = 0;
         UserAccount.ValidateUser();
-
-        }
-        else{
-            UserAccount.ValidateUser();
-        }
-
     }
     private static void addDummyData(){
         statistics.listOfCompletedWashes.add(new CompletedWash(economy));
@@ -108,14 +108,12 @@ public class WashMenu {
         Accounts.add(new UserAccount(02, 123, 999));
         Accounts.add(new UserAccount(03, 12345,500));
         Accounts.add(new UserAccount(04, 222, 214));
-
     }
 
     public static void main(String[] args) {
-        addDummyData(); //Vi kalder forskellige metoder her
+        addDummyData();
         UserAccount.ValidateUser();
-        endService();
-
+//        endService();
 
     }
 }
