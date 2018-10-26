@@ -14,7 +14,6 @@ public class WashMenu {
     static WashType de_Luxe = new WashType("De Luxe ",120,Duration.ofMinutes(8),false);
 
     public static void displayMenu() {
-        System.out.println("Welcome to SuperShine Carwash - the best in the town");
         System.out.println("Choose one of the following options: ");
         System.out.println("1. Wash car");
         System.out.println("2. Check account balance");
