@@ -10,6 +10,9 @@ public class UserAccount {
     }
 
     public static void ValidateUser() {
+        System.out.println("*********************************");
+        System.out.println("* Welcome to SuperShine CarWash *");
+        System.out.println("*********************************");
 
         Scanner input = new Scanner(System.in);
         for (int i = 0; i < 3; i++) {
@@ -21,11 +24,16 @@ public class UserAccount {
                 Admin.displayStatistics();
             } else {
                 if (WashMenu.Accounts.get(inID).CheckPIN(inPIN)) {
-                    WashMenu.displayMenu();
                     WashMenu.activeUser = inID;
+                    WashMenu.displayMenu();
+                    break;
+                } else {
+                    System.out.println("* Invalid Login, try again *");
                 }
             }
         }
+
+
     }
 
     public float GetAccountBalance() {

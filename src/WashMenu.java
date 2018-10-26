@@ -1,4 +1,5 @@
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -83,11 +84,15 @@ public class WashMenu {
     private static void endService(){
         Scanner input = new Scanner(System.in);
         System.out.println("Would you like a receipt? \nEnter yes or no");
-        activeUser = 0;
         String a = input.nextLine();
         if (a.equals("yes")){
-            System.out.println("Thank you for your visit \nYour current account balance is: " + Accounts.get(activeUser).GetAccountBalance() + " DKK");
+            System.out.println("Thank you for your visit, user " + activeUser);
+            System.out.println(LocalDateTime.now().toLocalDate() + " " + LocalDateTime.now().toLocalTime());
+            System.out.println("Your current account balance is: " + Accounts.get(activeUser).GetAccountBalance() + " DKK");
+            System.out.println("\n\n");
         } //print
+        activeUser = 0;
+        UserAccount.ValidateUser();
     }
     private static void addDummyData(){
         statistics.listOfCompletedWashes.add(new CompletedWash(economy));
@@ -107,7 +112,6 @@ public class WashMenu {
         addDummyData();
         UserAccount.ValidateUser();
         endService();
-
 
     }
 }
