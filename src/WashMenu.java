@@ -73,6 +73,7 @@ public class WashMenu {
         if(washType.getPrice() < Accounts.get(activeUser).GetAccountBalance()){
             Accounts.get(activeUser).ChangeAccountBalance(-washType.getPrice());
             washType.addToCompletedWashList();
+            System.out.println("Your wash is now starting, it will be done in " + washType.time.toMinutes() + " Minutes.");
             endService();
             try {
                 TimeUnit.MINUTES.sleep(washType.time.toMinutes());
