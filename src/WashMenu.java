@@ -26,7 +26,7 @@ public class WashMenu {
         switch(in) {
             case 1: displayWashTypes();
                 break;
-            case 2: System.out.println(Accounts.get(activeUser).GetAccountBalance());
+            case 2: System.out.println("Current Account Balance: " + Accounts.get(activeUser).GetAccountBalance());
             displayMenu();
                 break;
             case 3: refill();
@@ -73,9 +73,9 @@ public class WashMenu {
             Accounts.get(activeUser).ChangeAccountBalance(-washType.getPrice());
             washType.addToCompletedWashList();
             System.out.println("Your wash is now starting, it will be done in " + washType.time.toMinutes() + " Minutes.");
-            endService();
             try {
                 TimeUnit.MINUTES.sleep(washType.time.toMinutes());
+                endService();
             } catch (InterruptedException e) {} //Bliver ikke brugt til noget, men den skal være der i tilfælde af en exception
         } else {
             System.out.println("Insufficient amounts, please refill your WashCard");
@@ -87,6 +87,7 @@ public class WashMenu {
         System.out.println("Would you like a receipt? \nEnter yes or no");
         String a = input.nextLine();
         if (a.equals("yes")){
+            System.out.println("*********************************************");
             System.out.println("* Super Shine Receipt                       *");
             System.out.println("* Thank you for your visit, user " + activeUser + "          *");
             System.out.println("* " + ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME) + "           *");
@@ -113,7 +114,5 @@ public class WashMenu {
     public static void main(String[] args) {
         addDummyData();
         UserAccount.ValidateUser();
-//        endService();
-
     }
 }
