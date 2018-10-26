@@ -1,4 +1,5 @@
-import java.time.*;
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 
 public class CompletedWash {
     public WashType type;
@@ -10,10 +11,6 @@ public class CompletedWash {
         this.type = type;
         this.dateAndTime = LocalDateTime.now();
         this.money = type.getPrice();
-        if(dateAndTime.getHour() < 14 && type.earlybird && dateAndTime.getDayOfWeek() != DayOfWeek.SATURDAY && dateAndTime.getDayOfWeek() != DayOfWeek.SUNDAY){
-            discountUsed = true;
-        } else {
-            discountUsed = false;
-        }
+        discountUsed = dateAndTime.getHour() < 14 && type.earlybird && dateAndTime.getDayOfWeek() != DayOfWeek.SATURDAY && dateAndTime.getDayOfWeek() != DayOfWeek.SUNDAY;
     }
 }
