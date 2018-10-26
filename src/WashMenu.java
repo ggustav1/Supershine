@@ -1,5 +1,4 @@
 import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -22,8 +21,7 @@ public class WashMenu {
 
         Scanner input = new Scanner(System.in);
         int in = input.nextInt();
-        switch(in)
-        {
+        switch(in) {
             case 1: displayWashTypes();
                 break;
             case 2: System.out.println(Accounts.get(activeUser).GetAccountBalance());
@@ -38,7 +36,6 @@ public class WashMenu {
                 displayMenu();
                 break;
         }
-
     }
     private static void displayWashTypes(){
         System.out.println("Choose one of the following options:");
@@ -77,7 +74,7 @@ public class WashMenu {
             endService();
             try {
                 TimeUnit.MINUTES.sleep(washType.time.toMinutes());
-            } catch (InterruptedException e) {} //Bliver ikke brugt til noget, men den skal være
+            } catch (InterruptedException e) {} //Bliver ikke brugt til noget, men den skal være der i tilfælde af en exception
         } else {
             System.out.println("Insufficient amounts, please refill your WashCard");
             displayMenu();
@@ -86,10 +83,11 @@ public class WashMenu {
     private static void endService(){
         Scanner input = new Scanner(System.in);
         System.out.println("Would you like a receipt? \nEnter yes or no");
-
+        activeUser = 0;
         String a = input.nextLine();
-        if (a.equals("yes")){System.out.println("Thank you for your visit \nYour current account balance is: " + Accounts.get(activeUser).GetAccountBalance());} //print
-
+        if (a.equals("yes")){
+            System.out.println("Thank you for your visit \nYour current account balance is: " + Accounts.get(activeUser).GetAccountBalance() + " DKK");
+        } //print
     }
     private static void addDummyData(){
         statistics.listOfCompletedWashes.add(new CompletedWash(economy));
@@ -103,7 +101,6 @@ public class WashMenu {
         Accounts.add(new UserAccount(02, 123, 999));
         Accounts.add(new UserAccount(03, 12345,500));
         Accounts.add(new UserAccount(04, 222, 214));
-
     }
 
     public static void main(String[] args) {

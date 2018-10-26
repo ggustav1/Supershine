@@ -20,26 +20,24 @@ public class UserAccount {
             if (inID == 00 && inPIN == 000) {
                 Admin.displayStatistics();
             } else {
-                WashMenu.activeUser = inID;
                 if (WashMenu.Accounts.get(inID).CheckPIN(inPIN)) {
                     WashMenu.displayMenu();
+                    WashMenu.activeUser = inID;
                 }
             }
         }
     }
 
-    public float GetAccountBalance()
-    {
+    public float GetAccountBalance() {
         return AccountBalance;
-    }
+    } //Intet behov for denne funktion, oprettet da vi planlagde at bruge en txt fil til at holde UserAccount data
 
     public void ChangeAccountBalance(float BalanceChange)
     {
         AccountBalance += BalanceChange;
     }
 
-    public UserAccount(int id, int pin, float accountBalance)
-    {
+    public UserAccount(int id, int pin, float accountBalance) {
         this.ID=id;
         this.PIN=pin;
         this.AccountBalance=accountBalance;

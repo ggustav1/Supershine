@@ -13,22 +13,16 @@ public class WashType {
         this.earlybird = earlybird;
     }
 
-    public float getPrice()
-    {
+    public float getPrice() {
         LocalDateTime dateAndTime = LocalDateTime.now(); // now bruger vi fordi den er static. derfor behøver vi ikke bruge new
-
         if(dateAndTime.getHour() < 14 && earlybird && dateAndTime.getDayOfWeek() != DayOfWeek.SATURDAY && dateAndTime.getDayOfWeek() != DayOfWeek.SUNDAY){
             return price * 0.8f;
-        }
-        else
-            {
+        } else {
             return price;
-            }
-
+        }
     }
 
-    public void addToCompletedWashList()
-    {
-        WashMenu.statistics.listOfCompletedWashes.add(new CompletedWash(this)); // "this" referere til sig selv og tager alt med fra klassen washtype.
+    public void addToCompletedWashList() {
+        WashMenu.statistics.listOfCompletedWashes.add(new CompletedWash(this)); // "this" refererer til sig selv og tager alt med fra klassen washtype.
     }
 }
