@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 public class WashMenu {
     public static int activeUser;
     public static Statistics statistics = new Statistics(); //instans af klassen Statistics er oprettet
-    public static ArrayList<UserAccount> Accounts = new ArrayList<>();
+    public static ArrayList<UserAccount> Accounts = new ArrayList<UserAccount>();
     static WashType economy = new WashType("Economy ",50,Duration.ofMinutes(3),true); //Vi opretter de tre forskellige vasketyper
     static WashType standard = new WashType("Standard ",80,Duration.ofMinutes(5),true);
     static WashType de_Luxe = new WashType("De Luxe ",120,Duration.ofMinutes(8),false);
